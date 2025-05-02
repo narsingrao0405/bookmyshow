@@ -1,16 +1,16 @@
 # Set up the Node + Express + TypeScript Server
 
-cd server
-npm init -y
-npm install express
-npm install --save-dev typescript ts-node-dev @types/node @types/express
+        cd server
+        npm init -y
+        npm install express
+        npm install --save-dev typescript ts-node-dev @types/node @types/express
 
 # Create tsconfig.json
-npx tsc --init
+        npx tsc --init
 
 # CORS module installation for dev env
-npm install cors
-npm install --save-dev @types/cors
+        npm install cors
+        npm install --save-dev @types/cors
 
 # Add scripts in package.json
         "scripts": {

@@ -1,3 +1,15 @@
+## Instuctions to configure the application
+
+      npm install
+      
+      npm run dev  // Server  runs @ http://localhost:5173/
+
+      npm install --save-dev @types/node // For installing the path module 
+
+
+
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -51,17 +63,6 @@ export default tseslint.config({
     ...reactDom.configs.recommended.rules,
   },
 })
-
-
-# dd
-
-# npm install
- 
-# npm run dev
-// Server  runs @ http://localhost:5173/
-
-# npm install --save-dev @types/node // For installing the path module 
-
 
 
 
