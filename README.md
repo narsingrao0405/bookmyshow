@@ -1,4 +1,4 @@
-# ******************** GIT Project Initiation *********************************
+# GIT Project Initiation
         git clone https://github.com/narsingrao0405/bookmyshow.git
         git init
         git add README.md
