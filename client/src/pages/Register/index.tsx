@@ -72,7 +72,7 @@ function Register() {
                     </Button>
                 </Form.Item>
                 <div>
-                    <p>Already Have the Account <Link to="/login"> Login </Link></p>
+                    <p>Already a User? <Link to="/login"> Login </Link></p>
                 </div>
             </Form>
 
