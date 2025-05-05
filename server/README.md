@@ -4,6 +4,7 @@
         npm init -y
         npm install express
         npm install --save-dev typescript ts-node-dev @types/node @types/express
+        npm install --save-dev ts-node typescript
 
 # Create tsconfig.json
         npx tsc --init
@@ -17,3 +18,6 @@
             "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
             "build": "tsc"
         }
+# Packages Installed
+        npm install mongoose bcryptjs jsonwebtoken
+        npm install dotenv
