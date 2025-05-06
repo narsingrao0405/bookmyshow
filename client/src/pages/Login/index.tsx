@@ -1,12 +1,33 @@
-import React from 'react';
-import { Form, Button, Input } from "antd";
-import {Link} from "react-router-dom";
+//import React from 'react';
+import { Form, Button, Input, message } from "antd";
+import {Link, useNavigate} from "react-router-dom";
+import { LoginUser } from "../../services/user";
 
 function Login() {
+    const navigate = useNavigate();
 
-    const onFinish = (values: any) => {
-        console.log("SUbmitted Values are ", values);
-    }
+    const onFinish = async (values: any) => {
+       // console.log("SUbmitted Values are ", values);
+       try{
+        const response = await LoginUser(values);
+        if (response.success){
+            console.log("Login Success", response.message);
+            message.success(response.message);
+            // Redirect to home page after successful login
+            navigate("/home");
+        }else{
+            console.log("Login Failed", response.message);
+            message.error("Login Failed: " + response.message);
+
+        }
+
+       }catch(error:any){
+              console.log("Error in Sending the Login Request",error.message);
+              throw new Error(error.message);
+       }
+       
+       
+    };
     return (
         <>
 

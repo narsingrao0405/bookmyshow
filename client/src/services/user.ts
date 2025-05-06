@@ -19,5 +19,16 @@ export const RegisterUser = async(values:any) => {
 
 };
 
+export const LoginUser = async (values:any) =>{
+    try{
+        const response = await axiosInstance.post(`${API_USER_URL}/login`, values);
+        return response.data;
+
+    } catch(error:any){
+        console.log("Error in Sending the Login Request",error.message);
+        throw new Error(error.message);
+    }
+}
+
 
 

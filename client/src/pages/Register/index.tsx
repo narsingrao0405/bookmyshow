@@ -1,15 +1,19 @@
-import React from 'react';
+//import React from 'react';
 import {RegisterUser} from "../../services/user";
 
 import {Form, Input, Button, message} from "antd";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 function Register() {
+    const navigate = useNavigate();
     const onFinish = async (values: any) => {
         try {
             const response = await RegisterUser(values);
             if (response.success) {
                 message.success(response.message);
+                // Redirect to login page after successful registration
+                navigate("/login");
+                
             } else {
                 message.error("Registration Failed: " + response.message);
             }
