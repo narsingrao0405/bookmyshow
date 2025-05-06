@@ -11,6 +11,7 @@ console.log("Server Port is ::::::::::::::", PORT);
 
 
 const app = express();
+app.use(cors({origin: '*'}));
 
 //const connectDB = require('./config/db');
 const userRouter = require('./routes/userRoutes');
@@ -23,7 +24,7 @@ app.use('/api/users', userRouter);
 
 
 
-app.use(cors({origin: '*'}));
+
 
 
 app.get('/', (req: Request, res: Response) => {

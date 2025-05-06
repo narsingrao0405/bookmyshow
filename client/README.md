@@ -7,7 +7,10 @@
       npm install --save-dev @types/node // For installing the path module 
 
 
-
+# Packages 
+    npm install axios
+    npm install antd
+    
 
 
 # React + TypeScript + Vite

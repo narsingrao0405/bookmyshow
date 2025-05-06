@@ -1,14 +1,24 @@
 import React from 'react';
+import {RegisterUser} from "../../services/user";
 
-import {Form, Input, Button} from "antd";
+import {Form, Input, Button, message} from "antd";
 import {Link} from "react-router-dom";
 
 function Register() {
-    const onFinish = (values: any) => {
-        console.log("Submitted Values are ", values);
+    const onFinish = async (values: any) => {
+        try {
+            const response = await RegisterUser(values);
+            if (response.success) {
+                message.success(response.message);
+            } else {
+                message.error("Registration Failed: " + response.message);
+            }
+        } catch (error) {
+            message.error("An error occurred during registration.");
+        }
     }
   return (
-    <>
+    
     <main className='App-header'>
         <h1> Register to BookMyShow</h1>
         <section className='mw-500 text-center px-3"'>
@@ -78,7 +88,7 @@ function Register() {
 
         </section>
     </main>
-    </>
+    
   )
 }
 
