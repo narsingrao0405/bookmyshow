@@ -11,7 +11,10 @@ console.log("Server Port is ::::::::::::::", PORT);
 
 
 const app = express();
-app.use(cors({origin: '*'}));
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+}));
 
 //const connectDB = require('./config/db');
 const userRouter = require('./routes/userRoutes');

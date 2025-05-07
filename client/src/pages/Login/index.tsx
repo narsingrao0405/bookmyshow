@@ -11,8 +11,11 @@ function Login() {
        try{
         const response = await LoginUser(values);
         if (response.success){
+            // Store the token in local storage
+            localStorage.setItem("token", response.data);
             console.log("Login Success", response.message);
-            message.success(response.message);
+            //console.log("User Login Token is ::::::::::::::::", response.data);
+            message.success(response.message, response.data);
             // Redirect to home page after successful login
             navigate("/home");
         }else{

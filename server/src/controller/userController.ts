@@ -1,5 +1,9 @@
 import userModel from '../models/userModel';
 
+const jwt = require('jsonwebtoken');
+const jwtSecret : any = process.env.JWT_SECRET;
+const jwtExpiry : any = process.env.JWT_EXPIRY;
+
 
 const addUser = async(req: any, res: any) => {
     //const {name, email, password, isAdmin} = req.body;
@@ -32,6 +36,7 @@ const addUser = async(req: any, res: any) => {
 
 const loginUser = async (req: any, res: any) => {
     const {email, password} = req.body;
+
     console.log("User Login details are ::::::::::::::::", req.body);
     try{
         const login = await userModel.findOne({email});
@@ -49,10 +54,17 @@ const loginUser = async (req: any, res: any) => {
                 })
             }else{
                 console.log("User Login Success ::::::::::::", login);
+                const token = jwt.sign({userId: login._id}, jwtSecret, {expiresIn: jwtExpiry});
+                console.log("Token is ::::::::::::::::", token);
+                // res.cookie("token",token, {
+                //     httponly: true,
+                //     maxAge: jwtExpiry * 1000,
+                //     //secure: process.env.NODE_ENV === "production" ? true : false,
+                // });
                 res.status(200).json({
                     success: true,
                     message: "User Login Success",
-                    data: login.email,
+                    data: token,
                 })
             }
 
