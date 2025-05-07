@@ -80,8 +80,32 @@ const loginUser = async (req: any, res: any) => {
     }
 };
 
+export const currentUser = async (req: any, res: any) => {
+    console.log("Request Header Authorization ::::::::::::::::", req.headers.authorization);
+
+    try{
+        const user = await userModel.findById(req.user._id).select("-password");
+        res.send ({
+            success: true,
+            message: "You are authorized user to access this page",
+            user: user,
+        });
+
+    }catch(error:any){
+        console.log("Error in Current User :::::::::::", error.message);
+        res.status(500).json({
+            success: false,
+            message : "Error in Current User",
+            error: error.message
+        })
+    }
+
+
+}
+
 module.exports = {
     addUser, // creating a new user
     loginUser, // login user
+    currentUser // get current user
 
 }

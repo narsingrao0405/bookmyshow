@@ -31,5 +31,16 @@ export const LoginUser = async (values:any) =>{
     }
 }
 
+export const getCurrentUser = async () => {
+    try{
+        const response = await axiosInstance.get(`${API_USER_URL}/current`);
+        return response.data;
+
+    }catch(error:any){
+        console.log("Error in Sending the Current User Request",error.message);
+        throw new Error(error.message);
+    }
+}
+
 
 
