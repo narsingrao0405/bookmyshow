@@ -82,9 +82,14 @@ const loginUser = async (req: any, res: any) => {
 
 export const currentUser = async (req: any, res: any) => {
     console.log("Request Header Authorization ::::::::::::::::", req.headers.authorization);
-
     try{
-        const user = await userModel.findById(req.user._id).select("-password");
+        if (!req.user || !req.user._id) {
+            return res.status(401).json({
+                success: false,
+                message: "Unauthorized: User information is missing",
+            });
+        }
+        const user = await userModel.findById(req.body.userId).select("-password");
         res.send ({
             success: true,
             message: "You are authorized user to access this page",

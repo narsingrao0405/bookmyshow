@@ -1,3 +1,5 @@
+import authMiddleWare from "../middlewares/authMiddleWare";
+
 const userRouter = require("express").Router();
 const {addUser: addUserController, 
     loginUser: loginUserController,
@@ -7,6 +9,6 @@ const {addUser: addUserController,
 
 userRouter.post('/register', addUserController);
 userRouter.post('/login', loginUserController);
-userRouter.get('/current', currentUserController);
+userRouter.get('/current', authMiddleWare, currentUserController);
 
 module.exports = userRouter;
