@@ -9,6 +9,6 @@ const {addUser: addUserController,
 
 userRouter.post('/register', addUserController);
 userRouter.post('/login', loginUserController);
-userRouter.get('/current', authMiddleWare, currentUserController);
+userRouter.get('/current',  currentUserController);
 
 module.exports = userRouter;

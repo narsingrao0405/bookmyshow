@@ -82,31 +82,38 @@ const loginUser = async (req: any, res: any) => {
 
 export const currentUser = async (req: any, res: any) => {
     console.log("Request Header Authorization ::::::::::::::::", req.headers.authorization);
-    try{
-        if (!req.user || !req.user._id) {
+    try {
+        if (!req.user || !req.user.userId) {
             return res.status(401).json({
                 success: false,
                 message: "Unauthorized: User information is missing",
             });
         }
-        const user = await userModel.findById(req.body.userId).select("-password");
-        res.send ({
+
+        // Fetch the user using the userId from req.user
+        const user = await userModel.findById(req.user.userId).select("-password");
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found",
+            });
+        }
+
+        res.send({
             success: true,
             message: "You are authorized user to access this page",
             user: user,
         });
 
-    }catch(error:any){
+    } catch (error: any) {
         console.log("Error in Current User :::::::::::", error.message);
         res.status(500).json({
             success: false,
-            message : "Error in Current User",
-            error: error.message
-        })
+            message: "Error in Current User",
+            error: error.message,
+        });
     }
-
-
-}
+};
 
 module.exports = {
     addUser, // creating a new user
