@@ -13,8 +13,18 @@ const authMiddleWare = async (req: any, res: any, next: any) => {
                 message: "Unauthorized",
             });
         }
-        const decoded = jwt.verify(token, jwtSecret); // Verify the token
+        const decoded: any = jwt.verify(token, jwtSecret); // Verify the token
 
+        // Check if the token is expired
+        const currentTime = Math.floor(Date.now()/1000);
+        const tokenIssuesuedAt = decoded.iat;
+        if(tokenIssuesuedAt && currentTime > tokenIssuesuedAt + parseInt(jwtExpiry)) {
+            return res.status(401).json({
+                success: false,
+                message: "Token expired",
+            });
+        }
+        // Check if the token is valid
         req.user = decoded; // Attach the decoded token payload to req.user
         next();
     } catch (error: any) {
