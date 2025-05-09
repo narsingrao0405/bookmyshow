@@ -39,7 +39,7 @@ export const getCurrentUser = async () => {
     //     throw new Error("No token found. Please log in.");
     // }
     try{
-        const response = await axiosInstance.get(`${API_USER_URL}/current`);
+        const response = await axiosInstance.get(`${API_USER_URL}/get-current-user`);
         console.log("Response in Get Current User Request ::::::::::::::::", response.data);
         return response.data;
 

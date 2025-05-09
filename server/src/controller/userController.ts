@@ -1,3 +1,4 @@
+import authMiddleWare from '../middlewares/authMiddleWare';
 import userModel from '../models/userModel';
 
 const jwt = require('jsonwebtoken');
@@ -80,7 +81,7 @@ const loginUser = async (req: any, res: any) => {
     }
 };
 
-export const currentUser = async (req: any, res: any) => {
+export const currentUser =   [ authMiddleWare, async (req: any, res: any) => {
     console.log("Request Header Authorization ::::::::::::::::", req.headers.authorization);
     try {
         if (!req.user || !req.user.userId) {
@@ -113,11 +114,12 @@ export const currentUser = async (req: any, res: any) => {
             error: error.message,
         });
     }
-};
+}
+];
 
 module.exports = {
     addUser, // creating a new user
     loginUser, // login user
-    currentUser // get current user
+    currentUser // get current user details
 
 }
